@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { BASE_URL } from '../constants/constants';
 
 function Home() {
+    const token = localStorage.getItem('token');
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [passCheck, setPassCheck] = useState(false);
@@ -45,6 +47,7 @@ function Home() {
 
     return (
         <>
+            {token && <Navigate to="/todo" replace={true} />}
             <form>
                 <div>
                     <input
