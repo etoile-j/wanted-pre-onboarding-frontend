@@ -14,23 +14,24 @@ function Home() {
 
         if (email.match(emailRegex) && password.length >= 8) {
             setPassCheck(true);
+        } else {
+            setPassCheck(false);
         }
     };
 
-    const handleSignUp = async (e) => {
-        e.preventDefault();
+    const handleSignUp = async () => {
         try {
             const response = await axios.post(`${BASE_URL}auth/signup`, {
                 email: email,
                 password: password,
             });
+            if (response.status === 201) alert('회원가입이 완료되었습니다.');
         } catch (err) {
             console.error(err);
         }
     };
 
-    const handleSignIn = async (e) => {
-        e.preventDefault();
+    const handleSignIn = async () => {
         try {
             const response = await axios.post(`${BASE_URL}auth/signin`, {
                 email: email,
@@ -48,43 +49,47 @@ function Home() {
     return (
         <>
             {token && <Navigate to="/todo" replace={true} />}
-            <form>
-                <div>
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => {
-                            setEmail(e.target.value);
-                        }}
-                        onKeyUp={handleCheckValid}
-                        placeholder="이메일"
-                    ></input>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => {
-                            setPassword(e.target.value);
-                        }}
-                        onKeyUp={handleCheckValid}
-                        placeholder="비밀번호"
-                    ></input>
-                </div>
-                <button
-                    type="button"
-                    onClick={handleSignUp}
-                    disabled={passCheck ? false : true}
-                >
-                    회원가입
-                </button>
-                <button
-                    type="button"
-                    onClick={handleSignIn}
-                    disabled={passCheck ? false : true}
-                >
-                    로그인
-                </button>
-            </form>
+            <main>
+                <h1>로그인 및 회원가입</h1>
+                <form>
+                    <div>
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => {
+                                setEmail(e.target.value);
+                            }}
+                            onKeyUp={handleCheckValid}
+                            placeholder="이메일"
+                        ></input>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => {
+                                setPassword(e.target.value);
+                            }}
+                            onKeyUp={handleCheckValid}
+                            placeholder="비밀번호"
+                        ></input>
+                    </div>
+                    <button
+                        type="button"
+                        onClick={handleSignUp}
+                        disabled={passCheck ? false : true}
+                    >
+                        회원가입
+                    </button>
+                    <button
+                        type="button"
+                        onClick={handleSignIn}
+                        disabled={passCheck ? false : true}
+                    >
+                        로그인
+                    </button>
+                </form>
+            </main>
         </>
     );
 }
+
 export default Home;
