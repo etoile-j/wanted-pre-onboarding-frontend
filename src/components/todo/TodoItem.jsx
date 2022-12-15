@@ -21,8 +21,9 @@ export const TodoItem = ({ text, id, isCompleted }) => {
         }
     };
 
-    const handleUpdate = async (isCompleted) => {
+    const handleUpdate = async (isCompleted, check) => {
         try {
+            if (check === true) setComplete(!complete);
             const response = await axios.put(
                 `${BASE_URL}todos/${id}`,
                 {
@@ -35,7 +36,8 @@ export const TodoItem = ({ text, id, isCompleted }) => {
                     },
                 },
             );
-            if (response.status === 200) window.location.reload();
+            if (response.status === 200 && check === false)
+                window.location.reload();
         } catch (err) {
             console.error(err);
         }
@@ -54,7 +56,7 @@ export const TodoItem = ({ text, id, isCompleted }) => {
                     ></input>
                     <button
                         type="button"
-                        onClick={() => handleUpdate(complete)}
+                        onClick={() => handleUpdate(complete, false)}
                     >
                         제출
                     </button>
@@ -67,7 +69,7 @@ export const TodoItem = ({ text, id, isCompleted }) => {
                     <input
                         type="checkbox"
                         checked={complete}
-                        onChange={() => handleUpdate(!complete)}
+                        onChange={() => handleUpdate(!complete, true)}
                     ></input>
                     <span className={complete ? 'completed' : ''}>{text}</span>
                     <button type="button" onClick={() => setUpdate(true)}>
