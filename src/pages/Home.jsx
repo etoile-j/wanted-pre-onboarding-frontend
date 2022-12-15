@@ -5,8 +5,8 @@ import { BASE_URL } from '../constants/constants';
 
 function Home() {
     const token = localStorage.getItem('token');
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [passCheck, setPassCheck] = useState(false);
 
     const handleCheckValid = () => {
