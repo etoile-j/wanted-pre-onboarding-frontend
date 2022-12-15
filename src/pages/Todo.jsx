@@ -31,7 +31,7 @@ const Todo = () => {
         <>
             {!token && <Navigate to="/" replace={true} />}
             <main>
-                <h1>TO</h1>
+                <h1>TODO LIST</h1>
                 <section>
                     <input
                         type="text"
