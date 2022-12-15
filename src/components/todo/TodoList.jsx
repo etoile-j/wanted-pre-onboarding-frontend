@@ -15,7 +15,6 @@ function TodoList() {
                 },
             });
             setTodos(response.data);
-            console.log(response);
         } catch (err) {
             console.error(err);
         }

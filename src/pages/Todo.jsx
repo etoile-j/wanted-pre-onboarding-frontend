@@ -21,7 +21,6 @@ const Todo = () => {
                     },
                 },
             );
-            console.log(response);
             if (response.status === 201) window.location.reload();
         } catch (err) {
             console.error(err);
@@ -32,7 +31,7 @@ const Todo = () => {
         <>
             {!token && <Navigate to="/" replace={true} />}
             <main>
-                <h1>todo</h1>
+                <h1>TO</h1>
                 <section>
                     <input
                         type="text"

@@ -15,7 +15,6 @@ export const TodoItem = ({ text, id, isCompleted }) => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log(response);
             if (response.status === 204) window.location.reload();
         } catch (err) {
             console.error(err);
@@ -36,7 +35,6 @@ export const TodoItem = ({ text, id, isCompleted }) => {
                     },
                 },
             );
-            console.log(response);
             if (response.status === 200) window.location.reload();
         } catch (err) {
             console.error(err);
